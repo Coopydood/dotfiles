@@ -1,0 +1,22 @@
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+menuentry "Arch Linux (recovery mode)" --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-recovery-d6fe7752-7f22-40f6-bb09-89d201147c90' {
+		load_video
+		set gfxpayload=2560x1440
+		insmod gzio
+		insmod part_gpt
+		insmod fat
+		set root='hd3,gpt1'
+		if [ x$feature_platform_search_hint = xy ]; then
+		  search --no-floppy --fs-uuid --set=root --hint-bios=hd3,gpt1 --hint-efi=hd3,gpt1 --hint-baremetal=ahci3,gpt1  B421-25A5
+		else
+		  search --no-floppy --fs-uuid --set=root B421-25A5
+		fi
+		echo	'Loading Linux linux ...'
+		linux	/vmlinuz-linux root=UUID=d6fe7752-7f22-40f6-bb09-89d201147c90 rw single rootfstype=ext4
+		echo	'Loading initial ramdisk ...'
+		initrd	/intel-ucode.img /initramfs-linux-fallback.img
+}

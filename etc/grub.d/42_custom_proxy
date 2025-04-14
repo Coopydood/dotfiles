@@ -1,0 +1,21 @@
+#!/bin/sh
+#THIS IS A GRUB PROXY SCRIPT
+'/etc/grub.d/proxifiedScripts/custom~1' | /etc/grub.d/bin/grubcfg_proxy "-*
+-#text
+-'Arch Linux Stock'~fb065830f1373bf5637ef2e8fa2f052b~
+-'Arch Linux (All Passthrough)'~5d9bd688dc3055ec625adce98fdf28ec~
+-'Arch Linux Stock (RX 550 Passthrough)'~60ce6f092d54933ecf3971d10f311827~
+-'Arch Linux Stock (RTX 3090 Passthrough)'~e2041f1a1732bfebadb7b59caa6636b3~
+-'Arch Linux (RX 550 Passthrough) (on /dev/sdd3)'~ce078bbc3ea44b610fe14dfc1d79b8c8~
+-'OldArch'~d6b8a87a7868c28b3b3f9da20aeab8c3~
+-'Arch Linux Stock (RX 550 + UHD 630)'~340e837a9a0c54102925679ab4f3a73c~
+-'Arch Linux (Zen Kernel)'~ae63aad2a1f497763efecad1bcf16cf8~
+-'Arch Linux VFIO-PCI (RX 5700 XT)'~37778e7ac29bd509793a41548ff5da7a~
+-'Arch Linux VFIO-PCI (RTX 3090)'~f5ddd4d25493e0c5e060667f081eccff~
+-'Arch Linux Zen (RX550 + UHD 630)'~1f457f23cbb34613724da478751fc5fc~
++'Arch Linux'~17f512127bcc65e6d44019cb15845ba0~
++'Windows'~a2836de242640018e254113b2e30ef09~
++'macOS'~c945c0bccda3610eed1fbc81c69c43a5~
+-'Arch Linux VFIO-PCI (UHD 630)'~1537ab9041f789294dc1e306d523d4a1~
+-'macOS (Safe Mode)'~5f1c16668c932c65a2443675fc18a160~
+"

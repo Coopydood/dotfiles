@@ -1,0 +1,6 @@
+#!/bin/sh
+#THIS IS A GRUB PROXY SCRIPT
+'/etc/grub.d/proxifiedScripts/uefi-firmware' | /etc/grub.d/bin/grubcfg_proxy "-'UEFI Firmware Settings'~64e44c617bdc25f7157049e6ee844499~
++*
++#text
+"

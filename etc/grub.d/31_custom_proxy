@@ -1,0 +1,6 @@
+#!/bin/sh
+#THIS IS A GRUB PROXY SCRIPT
+'/etc/grub.d/proxifiedScripts/custom' | /etc/grub.d/bin/grubcfg_proxy "+*
++#text
+-'Arch Linux (recovery mode)'~63e1a49c6658cfc21399bb8f7098e682~ as 'Arch Linux, with Linux linux (recovery mode)'
+"

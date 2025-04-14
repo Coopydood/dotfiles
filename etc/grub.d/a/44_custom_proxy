@@ -1,0 +1,13 @@
+#!/bin/sh
+#THIS IS A GRUB PROXY SCRIPT
+'/etc/grub.d/proxifiedScripts/custom' | /etc/grub.d/bin/grubcfg_proxy "+*
+-'Arch Linux'~46b0f503eadf2890b2bf2698eb6c4b7f~
+-'Arch Linux (All Passthrough)'~8a5e24a588557ba0ea80edccdf252c6b~
+-'Arch Linux (RX 550 Passthrough)'~4fa764674d433857f4da5829a0f20f1d~
+-'Arch Linux (RTX 3090 Passthrough)'~a679aa528bc33a682a92139d8f5a6a2b~
+-'Arch Linux (RX 550 Passthrough) (on /dev/sdd3)'~ce078bbc3ea44b610fe14dfc1d79b8c8~
+-'OldArch'~d6b8a87a7868c28b3b3f9da20aeab8c3~
+-'Windows 10'~7b2b53d90310d951b19267c6861e3f98~
++*
++#text
+"

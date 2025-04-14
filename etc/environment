@@ -1,0 +1,15 @@
+#
+# This file is parsed by pam_env module
+#
+# Syntax: simple "KEY=VAL" pairs on separate lines
+#
+__GL_SYNC_DISPLAY_DEVICE=DP-0
+QT_QPA_PLATFORMTHEME=gtk2
+GTK_THEME=Fluent:dark
+#TERM=gnome-terminal
+#MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE=1
+#NO_AT_BRIDGE=1
+#CLUTTER_PAINT=disable-clipped-redraws:disable-culling
+#QT_QPA_PLATFORM=wayland
+QT_QPA_PLATFORM=
+PIPEWIRE_RUNTIME_DIR=/run/user/1000

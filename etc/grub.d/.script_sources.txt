@@ -1,0 +1,6 @@
+"current_name";"default_name"
+"01_tuned";"00_tuned"
+"proxifiedScripts/linux";"10_linux"
+"proxifiedScripts/uefi-firmware";"30_uefi-firmware"
+"proxifiedScripts/custom~1";"40_custom"
+"46_grub-customizer_menu_color_helper";"6_grub-customizer_menu_color_helper"

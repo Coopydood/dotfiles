@@ -1,0 +1,188 @@
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+menuentry "Arch Linux Stock" --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-e9627644-0456-45cc-9ebb-c66e323843be' {
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	echo	'Loading Linux linux ...'
+	linux	/vmlinuz-linux root=UUID=d6fe7752-7f22-40f6-bb09-89d201147c90 rw rootfstype=ext4 loglevel=3 intel_iommu=on iommu=pt pcie_aspm=off mmio_stale_data=full,nosmt vm.vfs_cache_pressure=150 vm.dirty_background_ratio=2 vm.dirty_ratio=1 transparent_hugepage=never delayacct
+	echo	'Loading initial ramdisk ...'
+	initrd	/intel-ucode.img /initramfs-linux.img
+}
+menuentry "Arch Linux (All Passthrough)"{
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	echo	'Loading Linux linux ...'
+	linux	/vmlinuz-linux root=UUID=57192c57-5e88-4e0f-be32-d4c7e5da3749 rw rootfstype=ext4 loglevel=3  intel_iommu=on iommu=pt vfio-pci.ids=1002:67ff,1002:aae0,12ab:0710,10de:2204,10de:1aef transparent_hugepage=never mmio_stale_data=full,nosmt vm.vfs_cache_pressure=50 vm.dirty_background_bytes=4194304
+	echo	'Loading initial ramdisk ...'
+	initrd	/intel-ucode.img /initramfs-linux.img
+}
+menuentry "Arch Linux Stock (RX 550 Passthrough)"{
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	echo	'Loading Linux linux ...'
+	linux	/vmlinuz-linux root=UUID=57192c57-5e88-4e0f-be32-d4c7e5da3749 rw rootfstype=ext4 loglevel=3 intel_iommu=on iommu=pt vfio-pci.ids=1002:67ff,1002:aae0,12ab:0710,15b7:501a pcie_aspm=off transparent_hugepage=never mmio_stale_data=full,nosmt vm.vfs_cache_pressure=50 vm.dirty_background_bytes=4194304
+	echo	'Loading initial ramdisk ...'
+	initrd	/intel-ucode.img /initramfs-linux.img
+}
+menuentry "Arch Linux Stock (RTX 3090 Passthrough)"{
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	echo	'Loading Linux linux ...'
+	linux	/vmlinuz-linux root=UUID=57192c57-5e88-4e0f-be32-d4c7e5da3749 rw rootfstype=ext4 loglevel=3 intel_iommu=on iommu=pt vfio-pci.ids=10de:2204,10de:1aef transparent_hugepage=never mmio_stale_data=full,nosmt vm.vfs_cache_pressure=50 vm.dirty_background_bytes=4194304
+	echo	'Loading initial ramdisk ...'
+	initrd	/intel-ucode.img /initramfs-linux.img
+}
+menuentry "Arch Linux (RX 550 Passthrough) (on /dev/sdd3)" --class gnu-linux --class gnu --class os $menuentry_id_option 'osprober-gnulinux-/boot/vmlinuz-linux--18f9aea0-6ad6-4b7e-b6ee-cd751b4f6378' {
+		insmod part_gpt
+		insmod ext2
+		set root='hd3,gpt3'
+		if [ x$feature_platform_search_hint = xy ]; then
+		  search --no-floppy --fs-uuid --set=root --hint-bios=hd3,gpt3 --hint-efi=hd3,gpt3 --hint-baremetal=ahci3,gpt3  18f9aea0-6ad6-4b7e-b6ee-cd751b4f6378
+		else
+		  search --no-floppy --fs-uuid --set=root 18f9aea0-6ad6-4b7e-b6ee-cd751b4f6378
+		fi
+		linux /boot/vmlinuz-linux root=UUID=18f9aea0-6ad6-4b7e-b6ee-cd751b4f6378 rw loglevel=3 intel_iommu=on iommu=pt vfio-pci.ids=1002:67ff,1002:aae0,12ab:0710 transparent_hugepage=never
+		initrd /boot/initramfs-linux.img
+}
+menuentry "OldArch"{
+		insmod part_gpt
+		insmod ext2
+		set root='hd3,gpt3'
+		if [ x$feature_platform_search_hint = xy ]; then
+		  search --no-floppy --fs-uuid --set=root --hint-bios=hd3,gpt3 --hint-efi=hd3,gpt3 --hint-baremetal=ahci3,gpt3  18f9aea0-6ad6-4b7e-b6ee-cd751b4f6378
+		else
+		  search --no-floppy --fs-uuid --set=root 18f9aea0-6ad6-4b7e-b6ee-cd751b4f6378
+		fi
+		linux /boot/vmlinuz-linux root=UUID=18f9aea0-6ad6-4b7e-b6ee-cd751b4f6378 rw loglevel=3 intel_iommu=on iommu=pt
+		initrd /boot/initramfs-linux.img
+}
+menuentry "Windows" --class windows --class os $menuentry_id_option 'osprober-efi-4351-A040' {
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+}
+menuentry "Arch Linux Stock (RX 550 + UHD 630)"{
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	echo	'Loading Linux linux ...'
+	linux	/vmlinuz-linux root=UUID=57192c57-5e88-4e0f-be32-d4c7e5da3749 rw rootfstype=ext4 loglevel=3 intel_iommu=on iommu=pt transparent_hugepage=never i915.enable_gvt=1 i915.enable_guc=0 kvm.ignore_msrs=1 mmio_stale_data=full,nosmt vm.vfs_cache_pressure=50 vm.dirty_background_bytes=4194304
+	echo	'Loading initial ramdisk ...'
+	initrd	/intel-ucode.img /initramfs-linux.img
+}
+menuentry "Arch Linux (Zen Kernel)"{
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	echo	'Loading Linux linux ...'
+	linux	/vmlinuz-linux root=UUID=57192c57-5e88-4e0f-be32-d4c7e5da3749 rw rootfstype=ext4 loglevel=3 intel_iommu=on iommu=pt pcie_aspm=off mmio_stale_data=full,nosmt vm.vfs_cache_pressure=150 vm.dirty_background_ratio=2 vm.dirty_ratio=1 transparent_hugepage=never delayacct
+	echo	'Loading initial ramdisk ...'
+	initrd	/intel-ucode.img /initramfs-linux-zen.img
+}
+menuentry "Arch Linux" --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-zen-advanced-57192c57-5e88-4e0f-be32-d4c7e5da3749' {
+	savedefault
+		load_video
+		set gfxpayload=2560x1440
+		insmod gzio
+		insmod part_gpt
+		insmod fat
+		search --no-floppy --fs-uuid --set=root B421-25A5
+		echo	'Loading Linux linux-zen ...'
+		linux	/vmlinuz-linux-zen root=UUID=d6fe7752-7f22-40f6-bb09-89d201147c90 rw rootfstype=ext4 rd.driver.pre=vfio-pci intel_iommu=on iommu=pt pcie_aspm=off mmio_stale_data=full i915.enable_psr=0 vm.vfs_cache_pressure=150 vm.dirty_background_ratio=2 vm.dirty_ratio=1 transparent_hugepage=never delayacct
+		echo	'Loading initial ramdisk ...'
+		initrd	/intel-ucode.img /initramfs-linux-zen.img
+}
+menuentry "Arch Linux VFIO-PCI (RX 5700 XT)"{
+	savedefault
+		load_video
+		set gfxpayload=2560x1440
+		insmod gzio
+		insmod part_gpt
+		insmod fat
+		search --no-floppy --fs-uuid --set=root B421-25A5
+		echo	'Loading Linux linux-zen ...'
+		linux	/vmlinuz-linux-zen root=UUID=d6fe7752-7f22-40f6-bb09-89d201147c90 rw rootfstype=ext4 rd.driver.pre=vfio-pci intel_iommu=on iommu=pt vfio-pci.ids=1002:731f,1002:ab38,15b7:501a pcie_no_flr=15b7:501a pcie_aspm=off transparent_hugepage=never mmio_stale_data=full vm.vfs_cache_pressure=50 vm.dirty_background_bytes=4194304 pcie_acs_override=downstream,multifunction
+	
+		echo	'Loading initial ramdisk ...'
+		initrd	/intel-ucode.img /initramfs-linux-zen.img
+}
+menuentry "Arch Linux VFIO-PCI (RTX 3090)"{
+	savedefault
+		load_video
+		set gfxpayload=2560x1440
+		insmod gzio
+		insmod part_gpt
+		insmod fat
+		search --no-floppy --fs-uuid --set=root B421-25A5
+		echo	'Loading Linux linux-zen ...'
+		linux	/vmlinuz-linux-zen root=UUID=d6fe7752-7f22-40f6-bb09-89d201147c90 rw rootfstype=ext4 rd.driver.pre=vfio-pci  intel_iommu=on iommu=pt vfio-pci.ids=10de:2204,10de:1aef transparent_hugepage=never mmio_stale_data=full vm.vfs_cache_pressure=50 vm.dirty_background_bytes=4194304
+		echo	'Loading initial ramdisk ...'
+		initrd	/intel-ucode.img /initramfs-linux-zen.img
+}
+menuentry "Arch Linux Zen (RX550 + UHD 630)"{
+	savedefault
+		load_video
+		set gfxpayload=2560x1440
+		insmod gzio
+		insmod part_gpt
+		insmod fat
+		search --no-floppy --fs-uuid --set=root B421-25A5
+		echo	'Loading Linux linux-zen ...'
+		linux	/vmlinuz-linux-zen root=UUID=d6fe7752-7f22-40f6-bb09-89d201147c90 rw rootfstype=ext4 rd.driver.pre=vfio-pci intel_iommu=on iommu=pt pcie_aspm=off mmio_stale_data=full,nosmt vm.vfs_cache_pressure=150 vm.dirty_background_ratio=2 vm.dirty_ratio=1 transparent_hugepage=never delayacct
+		echo	'Loading initial ramdisk ...'
+		initrd	/intel-ucode.img /initramfs-linux-zen.img
+}
+menuentry "macOS" --class macosx {
+	insmod chain
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	chainloader /EFI/OpenCore/OC/OpenCore.efi
+}
+menuentry "Arch Linux VFIO-PCI (UHD 630)"{
+	savedefault
+		load_video
+		set gfxpayload=2560x1440
+		insmod gzio
+		insmod part_gpt
+		insmod fat
+		search --no-floppy --fs-uuid --set=root B421-25A5
+		echo	'Loading Linux linux-zen ...'
+		linux	/vmlinuz-linux-zen root=UUID=d6fe7752-7f22-40f6-bb09-89d201147c90rw rootfstype=ext4 rd.driver.pre=vfio-pci intel_iommu=on iommu=pt transparent_hugepage=never modprobe.blacklist=i915 modules.blacklist=i915 pcie_no_flr=15b7:501a pcie_aspm=off vfio-pci.ids=8086:9bc5,15b7:501a,1002:731f,1002:ab38 transparent_hugepage=never mmio_stale_data=full vm.vfs_cache_pressure=50 vm.dirty_background_bytes=4194304 pcie_acs_override=downstream,multifunction
+	
+		echo	'Loading initial ramdisk ...'
+		initrd	/intel-ucode.img /initramfs-linux-zen.img
+}
+menuentry "macOS (Safe Mode)" --class macosx {
+	insmod chain
+	insmod part_gpt
+	insmod fat
+	search --no-floppy --fs-uuid --set=root B421-25A5
+	chainloader /EFI/OCSafeMode/OC/OpenCore.efi
+}
